@@ -73,7 +73,7 @@ quasar build
 
 ### 最近播放
 
-![latest](https://github.com/97Yates05/web-music/blob/master/src/Screenshot/latest.jpg)
+![latest](https://github.com/97Yates05/web-music/blob/master/src/Screenshot/latest.png)
 
 ### 我的主页（包含搜索结果页和歌单页）
 
