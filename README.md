@@ -35,7 +35,7 @@ quasar build
 
 ## 项目简介
 
-###实现技术
+### 实现技术
 
 主要使用Vue全家桶（包括Vuex、router、axios），UI框架使用了quasar，网络数据的获取基于 **[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)** 项目提供的API。
 
