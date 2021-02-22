@@ -2,7 +2,7 @@
  * api接口统一管理
  */
 import http from "./http";
-const baseUrl = "http://39.105.116.237:3000";
+const baseUrl = "http://localhost:4000";
 
 //登陆接口
 export const apiLogin = (phone, password) =>

@@ -49,14 +49,15 @@
         <keep-alive exclude="fm"><router-view /></keep-alive>
       </div>
       <div class="footer row q-px-md items-stretch">
-        <aplayer
-          class="col"
-          ref="player"
-          :audio="audio"
-          :lrc-type="1"
-          @play="start"
-          @pause="pause"
-        />
+        <!--        <aplayer-->
+        <!--          class="col"-->
+        <!--          ref="player"-->
+        <!--          :audio="audio"-->
+        <!--          :lrc-type="1"-->
+        <!--          @play="start"-->
+        <!--          @pause="pause"-->
+        <!--        />-->
+        <div id="aPlayer" class="col" />
         <q-btn class="q-ma-xs" @click="seamless = !seamless">
           <my-icon icon-name="#alilist" />
         </q-btn>
@@ -66,15 +67,18 @@
 </template>
 
 <script>
-import { getLyric } from "../../api/api";
+import { getLyric } from "src/api/api";
 import MyIcon from "../../components/my-icon";
 import { mapState, mapMutations } from "vuex";
+import "APlayer/dist/APlayer.min.css";
+import APlayer from "APlayer";
 
 export default {
   name: "Home",
   components: { MyIcon },
   data() {
     return {
+      ap: null,
       seamless: false,
       songs: [],
       audio: {
@@ -150,6 +154,13 @@ export default {
   methods: {
     ...mapMutations(["updateUserRecords", "updatePlayIndex", "updateIsPlay"]),
     async initData() {
+      this.ap = new APlayer({
+        container: document.getElementById("aPlayer"),
+        lrcType: 1,
+        audio: [this.audio]
+      });
+      this.ap.on("play", this.start);
+      this.ap.on("pause", this.pause);
       if (this.userId) {
         // let userRecords = await getUserRecord(this.userId, 1);
         // let weekData = userRecords.weekData.map(value => value.song);
@@ -167,6 +178,8 @@ export default {
       getLyric(this.songs[index].id).then(res => {
         this.$set(this.audio, "lrc", res);
       });
+      this.ap.list.clear();
+      this.ap.list.add(this.audio);
     },
     start() {
       this.updateIsPlay(true);

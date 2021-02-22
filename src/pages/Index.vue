@@ -112,7 +112,7 @@ export default Vue.extend({
           account: { id }
         } = await apiLogin(this.phone, this.password);
         this.updateUserId(id);
-        this.$router.replace({
+        await this.$router.replace({
           path: "/music/home"
         });
         this.$q.notify({
