@@ -2,7 +2,7 @@
  * api接口统一管理
  */
 import http from "./http";
-const baseUrl = "http://Music_be:4000";
+const baseUrl = "https://music.yangchenhui.xin/api";
 
 //登陆接口
 export const apiLogin = (phone, password) =>
